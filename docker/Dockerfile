@@ -1,4 +1,4 @@
-FROM grandchef/php:8.1.0-nginx
+FROM grandchef/php:7.4.27-nginx
 
 LABEL maintainer="Equipe GrandChef <desenvolvimento@grandchef.com.br>"
 
