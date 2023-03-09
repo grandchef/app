@@ -72,3 +72,23 @@ RUN addgroup -g 1000 node \
   # smoke tests
   && node --version \
   && npm --version
+
+
+RUN apk add gcompat
+
+# Install new relic agent
+RUN \
+  curl -L https://download.newrelic.com/php_agent/release/newrelic-php5-10.7.0.319-linux-musl.tar.gz | tar -C /tmp -zx && \
+  export NR_INSTALL_USE_CP_NOT_LN=1 && \
+  export NR_INSTALL_SILENT=1 && \
+  /tmp/newrelic-php5-*/newrelic-install install && \
+  rm -rf /tmp/newrelic-php5-* /tmp/nrinstall && \
+  sed -i \
+  -e 's/"REPLACE_WITH_REAL_KEY"/"${NEW_RELIC_LICENSE_KEY}"/' \
+  -e 's/newrelic.appname = "PHP Application"/newrelic.appname = "grandchef-pro"/' \
+  -e 's/;newrelic.daemon.app_connect_timeout =.*/newrelic.daemon.app_connect_timeout=15s/' \
+  -e 's/;newrelic.daemon.start_timeout =.*/newrelic.daemon.start_timeout=5s/' \
+  -e 's/newrelic.daemon.logfile =.*/newrelic.daemon.logfile=\/proc\/self\/fd\/2/' \
+  -e 's/newrelic.framework =.*/newrelic.framework=laravel/' \
+  -e 's/newrelic.logfile =.*/newrelic.logfile=\/proc\/self\/fd\/2/' \
+  /usr/local/etc/php/conf.d/newrelic.ini
