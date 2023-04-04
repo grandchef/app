@@ -5,17 +5,17 @@ Imagem base para criação do container da aplicação.
 
 Criar imagem base
 ```sh
-docker build -t grandchef/app:2.2-new-relic new-relic
+docker build -t grandchef/app:2.82.3-new-relic new-relic
 ```
 
 Roda o shell na imagem criada
 ```sh
-docker run -it --rm grandchef/app:2.2-new-relic /bin/bash
+docker run -it --rm grandchef/app:2.82.3-new-relic /bin/bash
 ```
 
 ## Release
 
 Envia imagem para o hub.docker
 ```sh
-docker push grandchef/app:2.2-new-relic
+docker push grandchef/app:2.82.3-new-relic
 ```

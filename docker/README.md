@@ -5,17 +5,17 @@ Imagem base para criação do container da aplicação.
 
 Criar imagem base
 ```sh
-docker build -t grandchef/app:2.2-base docker
+docker build -t grandchef/app:2.82.3-base docker
 ```
 
 Roda o shell na imagem criada
 ```sh
-docker run -it --rm grandchef/app:2.2-base /bin/bash
+docker run -it --rm grandchef/app:2.82.3-base /bin/bash
 ```
 
 ## Release
 
 Envia imagem para o hub.docker
 ```sh
-docker push grandchef/app:2.2-base
+docker push grandchef/app:2.82.3-base
 ```
